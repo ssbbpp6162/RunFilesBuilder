@@ -62,12 +62,12 @@ jobs:
       - name: Create install.sh script save to openclash directory
         run: |
           cat << 'EOF' > openclash-x86/install.sh
-          apt update
+          apk update
           if [ $? -ne 0 ]; then
               echo "update failed。"
               exit 1
           fi
-          apt install *.ipk || exit 1
+          apk add *.ipk || exit 1
           mv clash_meta /etc/openclash/core/
           sleep 10s
           ifconfig br-lan > /dev/null 2>&1
